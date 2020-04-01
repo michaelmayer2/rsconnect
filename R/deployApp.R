@@ -65,8 +65,12 @@
 #'   value will be used. The specified python binary will be invoked to determine
 #'   its version and to list the python packages installed in the environment.
 #' @param forceGeneratePythonEnvironment Optional. If an existing
-#'   `requirements.txt` file is found, it will be overwritten when this argument
-#'   is `TRUE`.
+#'   `requirements.txt` or `environment.yml` file is found, it will
+#'   be overwritten when this argument is `TRUE`.
+#' @param forceRequirementsTxtEnvironment Optional. If rsconnect
+#'   detects you are running in a conda environment, it will write
+#'   `requirements.txt` instead of `environment.yml` when this
+#'   argument is `TRUE`.
 #' @examples
 #' \dontrun{
 #'
@@ -113,9 +117,8 @@ deployApp <- function(appDir = getwd(),
                       forceUpdate = getOption("rsconnect.force.update.apps", FALSE),
                       python = NULL,
                       on.failure = NULL,
-                      forceGeneratePythonEnvironment = FALSE) {
-  # TODO: Temporarily disable conda environment capture until it is supported.
-  forceRequirementsTxtEnvironment <- TRUE
+                      forceGeneratePythonEnvironment = FALSE,
+                      forceRequirementsTxtEnvironment = FALSE) {
 
   if (!isStringParam(appDir))
     stop(stringParamErrorMessage("appDir"))
