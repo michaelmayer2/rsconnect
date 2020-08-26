@@ -638,6 +638,9 @@ createAppManifest <- function(appDir, appMode, contentCategory, hasParameters,
         if (isSCMSource(info$Source)) {
           # ignore source+SCM packages
         } else {
+          print("MISSING URL")
+          print(info)
+          print(deps[i,])
           missing_url_sources <- unique(c(missing_url_sources, info$Source))
         }
       }
